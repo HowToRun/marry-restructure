@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.self</groupId>
+	<artifactId>marry-restructure</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>marry-restructure</name>
+	<description>Demo project for Spring Boot</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!--mybatis start -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis-version}</version>
+		</dependency>
+		<!--mybatis end  -->
+
+
+		<!--alibaba 数据库连接工具 start-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+		<!--alibaba 数据库连接工具 end-->
+
+		<!--alibaba json start -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<!--alibaba json end -->
+
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+
+		<!--swagger  start -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<!--swagger  end -->
+		<!--get/set 自动注解 start-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--get/set 自动注解 end-->
+		<!--分页插件  start-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>${pagehelper.version}</version>
+		</dependency>
+		<!--分页插件  end-->
+		<!--邀请函jar包迁移mvn-->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+        <dependency>
+            <groupId>com.edb.os</groupId>
+            <artifactId>xstream-java-code-writer</artifactId>
+            <version>1.0</version>
+            <classifier>sources</classifier>
+            <type>java-source</type>
+        </dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>at.stefangeyer.challonge.serializer</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hynnet</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.2</version>
+		</dependency>
+		<!--<dependency>
+			<groupId>cn.mtm2000</groupId>
+			<artifactId>common</artifactId>
+			<version>0.1</version>
+		</dependency>-->
+<!--		&lt;!&ndash;			原版本为1.1.1&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>activation</groupId>-->
+<!--			<artifactId>activation</artifactId>-->
+<!--			<version>1.0.2</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>antlr</groupId>-->
+<!--			<artifactId>antlr</artifactId>-->
+<!--			<version>2.7.6</version>-->
+<!--		</dependency>-->
+
+
+
+
+	</dependencies>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<druid.version>1.1.8</druid.version>
+		<swagger.version>2.6.1</swagger.version>
+		<mybatis-version>1.3.2</mybatis-version>
+		<fastjson.version>1.2.4</fastjson.version>
+		<mysql.version>8.0.9-rc</mysql.version>
+		<pagehelper.version>4.1.1</pagehelper.version>
+	</properties>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<mvn.profile.name>dev</mvn.profile.name>
+				<datasource.url>jdbc:mysql://127.0.0.1:3306/marry</datasource.url>
+				<datasource.username>root</datasource.username>
+				<datasource.password>root</datasource.password>
+				<database.pool.druidLoginName>root</database.pool.druidLoginName>
+				<database.pool.druidPassword>root</database.pool.druidPassword>
+				<!--response config begin-->
+				<response.allowOrigin>http://localhost:8080</response.allowOrigin>
+				<!--response end begin-->
+				<mvn.skipdoc>true</mvn.skipdoc>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- resource插件 start  -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<delimiters>
+						<!--修改mvn占位符，如果你pom继承的spring-boot-starter-parent，
+						Spring Boot 已经将maven-resources-plugins默认的${}方式改为了@ @方式，例如@name@。-->
+						<delimiter>${*}</delimiter>
+						<!--<delimiter>@</delimiter>-->
+					</delimiters>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- resource插件 end  -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>${mvn.skipdoc}</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

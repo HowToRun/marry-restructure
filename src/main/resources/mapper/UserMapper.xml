@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtm.party.mobile.dao.UserMapper">
+    <select id="getUserById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.User">
+        select * from T_USER u where u.openId=#{openId}
+    </select>
+    <select id="getHostUserById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.HostUser">
+        select * from T_HOST_USER u where u.openId=#{openId}
+    </select>
+    <select id="getUsers" resultType="com.mtm.party.mobile.model.User">
+        select * from T_USER u
+    </select>
+    <insert id="saveUser" parameterType="com.mtm.party.mobile.model.User">
+        insert into T_USER_RECORD(
+        id,
+        openId,
+        avatarUrl,
+        city,
+        nickName,
+        province
+        <if test="createTime != null ">
+            ,createTime
+        </if>
+        <if test="updateTime != null ">
+            ,updateTime
+        </if>
+        )
+        values
+        (
+        #{id},
+        #{openId},
+        #{avatarUrl},
+        #{city},
+        #{nickName},
+        #{province}
+        <if test="createTime != null ">
+            ,#{createTime}
+        </if>
+        <if test="updateTime != null ">
+            ,#{updateTime}
+        </if>
+        )
+    </insert>
+    <insert id="saveUserRecord" parameterType="com.mtm.party.mobile.model.UserRecord">
+        insert into T_USER(
+        id,
+	    openId,
+        avatarUrl,
+        city,
+        nickName,
+        province
+        <if test="createTime != null ">
+            ,createTime
+        </if>
+        <if test="updateTime != null ">
+            ,updateTime
+        </if>
+        )
+        values
+        (
+        #{id},
+        #{openId},
+        #{avatraUrl},
+        #{city},
+        #{nickName},
+        #{province}
+        <if test="createTime != null ">
+            ,#{createTime}
+        </if>
+        <if test="updateTime != null ">
+            ,#{updateTime}
+        </if>
+        )
+    </insert>
+    <insert id="saveHostUser" parameterType="com.mtm.party.mobile.model.HostUser">
+        insert into T_HOST_USER(
+        id,
+        openId,
+        avatarUrl,
+        city,
+        nickName,
+        province,
+        createTime,
+        updateTime,
+        isOriginal,
+        userPhone,
+        userWechat
+        )
+        values
+        (
+        #{id}
+        #{openId}
+        #{avatarUrl}
+        #{city}
+        #{nickName}
+        #{province}
+        #{createTime}
+        #{updateTime}
+        #{isOriginal}
+        #{userPhone}
+        #{userWechat}
+        )
+    </insert>
+    <update id="updateUser" parameterType="com.mtm.party.mobile.model.User">
+        update T_USER_RECORD set
+        1=1
+        <if test="openId != null ">
+            ,#{openId}
+        </if>
+        <if test="avatraUrl != null ">
+            ,#{avatraUrl}
+        </if>
+        <if test="city != null ">
+            ,#{city}
+        </if>
+        <if test="nickName != null ">
+            ,#{nickName}
+        </if>
+        <if test="province != null ">
+            ,#{province}
+        </if>
+        <if test="createTime != null ">
+            ,#{createTime}
+        </if>
+        <if test="updateTime != null ">
+            ,#{updateTime}
+        </if>
+        where id=#{id}
+    </update>
+    <update id="updateHostUser" parameterType="com.mtm.party.mobile.model.HostUser">
+        update T_HOST_USER set
+        1=1
+        <if test="openId != null ">
+            ,#{openId}
+        </if>
+        <if test="avatraUrl != null ">
+            ,#{avatraUrl}
+        </if>
+        <if test="city != null ">
+            ,#{city}
+        </if>
+        <if test="nickName != null ">
+            ,#{nickName}
+        </if>
+        <if test="province != null ">
+            ,#{province}
+        </if>
+        <if test="createTime != null ">
+            ,#{createTime}
+        </if>
+        <if test="updateTime != null ">
+            ,#{updateTime}
+        </if>
+    </update>
+</mapper>
