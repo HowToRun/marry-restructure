@@ -18,7 +18,8 @@
 数据库表结构优化
 
 #### 项目运行说明
-运行前先执行mvn clean package -Pdev编译。否则无法读取数据库连接信息。
+在pom.xml文件中修改好数据库连接信息后先编译
+先执行mvn clean package -Pdev编译。否则无法读取数据库连接信息。
 
 #### 项目说明
  - 项目架构：spring boot 1.5.4.RELEASE + mybatis 1.3.2
