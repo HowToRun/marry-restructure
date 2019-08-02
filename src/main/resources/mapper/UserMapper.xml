@@ -2,155 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtm.party.mobile.dao.UserMapper">
-    <select id="getUserById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.User">
-        select * from T_USER u where u.openId=#{openId}
-    </select>
-    <select id="getHostUserById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.HostUser">
-        select * from T_HOST_USER u where u.openId=#{openId}
-    </select>
-    <select id="getUsers" resultType="com.mtm.party.mobile.model.User">
-        select * from T_USER u
-    </select>
-    <insert id="saveUser" parameterType="com.mtm.party.mobile.model.User">
-        insert into T_USER_RECORD(
-        id,
-        openId,
-        avatarUrl,
-        city,
-        nickName,
-        province
-        <if test="createTime != null ">
-            ,createTime
-        </if>
-        <if test="updateTime != null ">
-            ,updateTime
-        </if>
+    <insert id="saveRecord" parameterType="com.mtm.party.mobile.model.UserInfo">
+        insert into user_record_info(
+        user_open_id,
+        create_time
         )
         values
         (
-        #{id},
+        #{userOpenId},
+        now()
+        )
+    </insert>
+    <insert id="saveUserInfo" parameterType="com.mtm.party.mobile.model.UserEntity">
+        insert into user_info(
+        open_id,
+        avatar_url,
+        nick_name,
+        province,
+        city,
+        create_time,
+        update_time
+        )
+        values
+        (
         #{openId},
         #{avatarUrl},
-        #{city},
         #{nickName},
-        #{province}
-        <if test="createTime != null ">
-            ,#{createTime}
-        </if>
-        <if test="updateTime != null ">
-            ,#{updateTime}
-        </if>
-        )
-    </insert>
-    <insert id="saveUserRecord" parameterType="com.mtm.party.mobile.model.UserRecord">
-        insert into T_USER(
-        id,
-	    openId,
-        avatarUrl,
-        city,
-        nickName,
-        province
-        <if test="createTime != null ">
-            ,createTime
-        </if>
-        <if test="updateTime != null ">
-            ,updateTime
-        </if>
-        )
-        values
-        (
-        #{id},
-        #{openId},
-        #{avatraUrl},
+        #{province},
         #{city},
-        #{nickName},
-        #{province}
-        <if test="createTime != null ">
-            ,#{createTime}
-        </if>
-        <if test="updateTime != null ">
-            ,#{updateTime}
-        </if>
+        now(),
+        now()
         )
     </insert>
-    <insert id="saveHostUser" parameterType="com.mtm.party.mobile.model.HostUser">
-        insert into T_HOST_USER(
-        id,
-        openId,
-        avatarUrl,
-        city,
-        nickName,
-        province,
-        createTime,
-        updateTime,
-        isOriginal,
-        userPhone,
-        userWechat
-        )
-        values
-        (
-        #{id}
-        #{openId}
-        #{avatarUrl}
-        #{city}
-        #{nickName}
-        #{province}
-        #{createTime}
-        #{updateTime}
-        #{isOriginal}
-        #{userPhone}
-        #{userWechat}
-        )
-    </insert>
-    <update id="updateUser" parameterType="com.mtm.party.mobile.model.User">
-        update T_USER_RECORD set
-        1=1
-        <if test="openId != null ">
-            ,#{openId}
-        </if>
-        <if test="avatraUrl != null ">
-            ,#{avatraUrl}
-        </if>
-        <if test="city != null ">
-            ,#{city}
-        </if>
-        <if test="nickName != null ">
-            ,#{nickName}
-        </if>
-        <if test="province != null ">
-            ,#{province}
-        </if>
-        <if test="createTime != null ">
-            ,#{createTime}
-        </if>
-        <if test="updateTime != null ">
-            ,#{updateTime}
-        </if>
-        where id=#{id}
-    </update>
-    <update id="updateHostUser" parameterType="com.mtm.party.mobile.model.HostUser">
-        update T_HOST_USER set
-        1=1
-        <if test="openId != null ">
-            ,#{openId}
-        </if>
-        <if test="avatraUrl != null ">
-            ,#{avatraUrl}
-        </if>
-        <if test="city != null ">
-            ,#{city}
-        </if>
-        <if test="nickName != null ">
-            ,#{nickName}
-        </if>
-        <if test="province != null ">
-            ,#{province}
-        </if>
-        <if test="createTime != null ">
-            ,#{createTime}
-        </if>
-        <if test="updateTime != null ">
-            ,#{updateTime}
-        </if>
+    <select id="getUserByOpenId" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.UserEntity">
+        select
+         id,
+         open_id as openId,
+         avatar_url as avatarUrl,
+         nick_name as nickName,
+         province,
+         city,
+         create_time as createTime,
+         update_time as updateTime
+         from user_info  where open_id=#{openId}
+    </select>
+    <update id="updateUserInfo" parameterType="com.mtm.party.mobile.model.UserEntity">
+        update user_info set
+        open_id=#{openId},
+        avatar_url=#{avatarUrl},
+        nick_name=#{nickName},
+        province=#{province},
+        city=#{city},
+        update_time=now()
     </update>
 </mapper>

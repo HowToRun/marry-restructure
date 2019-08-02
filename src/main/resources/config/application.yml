@@ -22,12 +22,12 @@ mybatis:
 
 spring:
     profiles:
-        active: ${mvn.profile.name}
+        active: dev
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
-        url: ${datasource.url}?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
-        username: ${datasource.username}
-        password: ${datasource.password}
+        url: jdbc:mysql://127.0.0.1:3306/marry2?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
+        username: root
+        password: root
         #连接池的配置信息
         driver-class-name: com.mysql.cj.jdbc.Driver #mysql 新版本驱动
         minIdle: 5
@@ -46,8 +46,8 @@ spring:
         filters: stat # ,wall,log4j # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
-        druidLoginName: ${database.pool.druidLoginName} # 登录druid的账号
-        druidPassword: ${database.pool.druidPassword} # 登录druid的密码
+        druidLoginName: root # 登录druid的账号
+        druidPassword: root # 登录druid的密码
 #跨域参数
 response:
   header:

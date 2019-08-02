@@ -10,9 +10,7 @@
  */
 package com.mtm.party.mobile.dao;
 
-import com.mtm.party.mobile.model.HostUser;
-import com.mtm.party.mobile.model.User;
-import com.mtm.party.mobile.model.UserRecord;
+import com.mtm.party.mobile.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
@@ -30,19 +28,11 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
+  void saveRecord(UserRecordInfo userRecordInfo);
 
-  void saveUser(User user);
-  void saveUserRecord(UserRecord user);
+  UserEntity getUserByOpenId(String openId);
 
-  void updateUser(User user);
+  void saveUserInfo(UserEntity user);
 
-  void updateHostUser(HostUser user);
-
-  void saveHostUser(HostUser user);
-
-  List<Object> getUserById(@Param("openId") String openId);
-
-  HostUser getHostUserById(@Param("openId")String openId);
-
-  List<User> getUsers();
+  void updateUserInfo(UserEntity user);
 }

@@ -27,55 +27,17 @@ import java.util.List;
 @Mapper
 public interface MobileMapper {
 
-  List listByNickName(@Param("nickImage") String nickImage);
+  List<HomeImgEntity> getHomeImg(String openId);
 
-  List listById(@Param("openId") String openId, @Param("userId") String userId);
+  List<ImgDetailEntity> getDetailImage(@Param("id") String id);
 
-  List getBlessUserByOpenId(@Param("openId")String openId);
+  List<BlessInfoDto> getblessInfo();
 
-  List getAllBlessUser(@Param("openId")String openId);
+  List<CommentDto> getcomment();
 
-  List<BlessComment> getAllBlessComment(@Param("openId")String openId);
+  void doComment(CommentDto commentDto);
 
-  void saveUser(BlessUser blessUser);
+  void doPraise(String openId);
 
-  void saveComment(BlessComment blessUser);
-
-  List getUserImageById(@Param("id") String id);
-
-  List getMapInfoByOpenId(@Param("id") String id);
-
-  List getUserImageByName(@Param("imageName") String imageName);
-
-  List getShareInfoByUserId(@Param("userId") String userId);
-
-  List<ImageHomeBean> getHostUserImgs(@Param("openId")String openId);
-
-  List getDetailImages(@Param("userId") String userId);
-
-  List getDetailImagesById(@Param("id") String id);
-
-  List getUserLogoByUserId(@Param("userId") String userId);
-
-  List getDetailImagesByBannerId(@Param("bannerId") String bannerId);
-
-  void saveImageHomeBean(ImageHomeBean bean);
-
-  void updateImageHomeBean(ImageHomeBean bean);
-
-  void saveMapInfo(MapInfo bean);
-
-  void updateMapInfo(MapInfo bean);
-
-  void saveShareInfo(ShareInfo bean);
-
-  void updateShareInfo(ShareInfo bean);
-
-  void saveDetailImages(DetailImages bean);
-
-  void updateDetailImages(DetailImages bean);
-
-  void saveUserLogo(UserLogo bean);
-
-  void updateUserLogo(UserLogo bean);
+  int check(String openId);
 }

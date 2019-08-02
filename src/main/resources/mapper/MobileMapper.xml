@@ -2,301 +2,86 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mtm.party.mobile.dao.MobileMapper">
-    <select id="listByNickName" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.BlessUser">
-        select c.* FROM T_BLESS_USER c where c.nick_image=#{nickImage}
-    </select>
-    <select id="getUserImageById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.ImageHomeBean">
+    <select id="getHomeImg" resultType="com.mtm.party.mobile.model.HomeImgEntity">
         select
         c.id as id,
+        c.code as code,
         c.img_url as imgUrl,
         c.title as title,
-        c.user_id as userId,
-        c.create_time as createTime,
-        c.update_time as updateTime,
-        c.image_namge as imageName
-        FROM T_IMAGE c where c.id=#{id}
-    </select>
-    <select id="getUserImageByName" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.ImageHomeBean">
-        select
-        c.id as id,
-        c.img_url as imgUrl,
-        c.title as title,
-        c.user_id as userId,
-        c.create_time as createTime,
-        c.update_time as updateTime,
-        c.image_namge as imageName
-        FROM T_IMAGE c where c.image_name=#{imageName}
-    </select>
-    <select id="getHostUserImgs" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.ImageHomeBean">
-        select
-        c.id as id,
-        c.img_url as imgUrl,
-        c.title as title,
-        c.user_id as userId,
-        c.create_time as createTime,
-        c.update_time as updateTime,
-        c.image_name as imageName
-        FROM T_IMAGE c where c.user_id=#{openId}
-    </select>
-    <select id="getDetailImages" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.DetailImages">
-        select
-        id as id,
-        img_url as imgUrl,
-        user_id as userId,
-        banner_id as bannerId,
-        desc1 as `desc`,
-        create_time as createTime,
-        update_time as updateTime
-        FROM T_DETAIL_IMAGES  where user_id=#{userId}
-    </select>
-    <select id="getDetailImagesById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.DetailImages">
-        select
-        id as id,
-        img_url as imgUrl,
-        user_id as userId,
-        banner_id as bannerId,
-        desc1 as `desc`,
-        create_time as createTime,
-        update_time as updateTime
-        FROM T_DETAIL_IMAGES  where id=#{id}
-    </select>
-    <select id="getDetailImagesByBannerId" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.DetailImages">
-        select
-        id as id,
-        img_url as imgUrl,
-        user_id as userId,
-        banner_id as bannerId,
-        desc1 as `desc`,
-        create_time as createTime,
-        update_time as updateTime
-        FROM T_DETAIL_IMAGES  where banner_id=#{bannerId}
-    </select>
-    <select id="getUserLogoByUserId" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.UserLogo">
-        select
-        id as id,
-        img_url as imgUrl,
-        user_id as userId,
-        create_time as createTime,
-        update_time as updateTime
-        FROM T_USER_LOGO c where c.user_id=#{userId}
-    </select>
-    <select id="getMapInfoByOpenId" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.MapInfo">
-        select c.* FROM T_MAP_INFO c where c.userId=#{id}
-    </select>
-    <select id="listById" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.BlessUser">
-        select c.* FROM T_BLESS_USER c where c.open_id=#{openId} and c.user_id=#{userId}
-    </select>
-    <select id="getShareInfoByUserId" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.ShareInfo">
-        select
-        c.id as id,
-	    c.user_id as userId,
-        c.img_url as imgUrl,
+        c.user_open_id as userOpenId,
+        c.desc as `desc`,
         c.create_time as createTime,
         c.update_time as updateTime
-        FROM T_SHARE_INFO c where c.user_id=#{userId}
-    </select>
-
-    <select id="getBlessUserByOpenId" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.BlessUser">
-        select c.* FROM T_BLESS_USER c where c.open_id=#{openId}
-    </select>
-    <select id="getAllBlessUser" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.BlessUser">
-        select c.* FROM T_BLESS_USER c where
-        1=1
-        <if test="openId != null ">
-           and c.user_id=#{openId}
-        </if>
-         order by c.create_time desc
-    </select>
-
-    <select id="getAllBlessComment" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.BlessComment">
-        select c.* FROM T_BLESS_COMMENT c
-        where
-        1=1
-        <if test="openId != null ">
-            and c.user_id=#{openId}
-        </if>
+        FROM image_info c
         order by c.create_time desc
     </select>
-    <insert id="saveUser" parameterType="com.mtm.party.mobile.model.BlessUser">
-        insert into T_BLESS_USER(
-        id,
-        create_time,
-        open_id,
-        nick_image,
-        nick_name,
-        user_id
-        )values(
-            #{id},
-            #{create_time},
-            #{open_id},
-            #{nick_image},
-            #{nick_name},
-            #{user_id}
-        )
-    </insert>
-    <insert id="saveComment" parameterType="com.mtm.party.mobile.model.BlessComment">
-        insert into T_BLESS_COMMENT(
-        id,
-        nick_name,
-        nick_image,
+    <select id="getDetailImage" parameterType="java.lang.String" resultType="com.mtm.party.mobile.model.ImgDetailEntity">
+        select
+        c.id as id,
+        c.code as code,
+        c.img_url as imgUrl,
+        c.banner_code as bannerCode,
+        c.user_open_id as userOpenId,
+        c.desc as `desc`,
+        c.create_time as createTime,
+        c.update_time as updateTime
+        FROM image_detail_info c
+        where
+        c.banner_code=#{id}
+        order by c.create_time desc
+    </select>
+    <select id="getblessInfo" resultType="com.mtm.party.mobile.model.BlessInfoDto">
+        SELECT
+        a.bless_user as blessUser, -- 点赞人openid
+        a.create_time as createTime, -- 点赞时间
+        b.avatar_url as avatarUrl, -- 点赞人头像地址
+        b.nick_name as nickName, -- 点赞人昵称
+        b.province as province, -- 点赞人省份
+        b.city as city -- 点赞人城市
+        FROM
+            `bless_info` a
+        LEFT JOIN user_info b on a.bless_user = b.open_id
+        order by a.create_time desc
+    </select>
+    <select id="getcomment" resultType="com.mtm.party.mobile.model.CommentDto">
+        SELECT
+        a.comment_user as userOpenId,
+        a.`comment` as `comment`,
+        a.create_time as createTime,
+        b.nick_name as nickName,
+        b.province as province,
+        b.city as city,
+        b.avatar_url as avatarUrl
+        FROM
+            `comment_info` a
+        LEFT JOIN user_info b on b.open_id = a.comment_user
+        ORDER BY a.create_time desc
+    </select>
+    <select id="check" resultType="java.lang.Integer">
+        SELECT
+        count(id)
+        from bless_info
+        where
+        bless_user = #{openId}
+    </select>
+    <insert id="doComment" parameterType="com.mtm.party.mobile.model.CommentDto">
+        insert into comment_info(
+        comment_user,
         comment,
-        create_time,
-        open_id,
-        user_id
-        )values(
-        #{id},
-        #{nick_name},
-        #{nick_image},
+        create_time
+        )values (
+        #{userOpenId},
         #{comment},
-        #{create_time},
-        #{open_id},
-        #{user_id}
+        now()
         )
     </insert>
-    <insert id="saveImageHomeBean" parameterType="com.mtm.party.mobile.model.ImageHomeBean">
-        insert into T_IMAGE(
-        id,
-        img_url,
-        title,
-        user_id,
-        create_time,
-        update_time,
-        image_name
-        )values(
-        #{id},
-        #{imgUrl},
-        #{title},
-        #{userId},
-        #{createTime},
-        #{updateTime},
-        #{imageName}
+    <insert id="doPraise" parameterType="java.lang.String">
+        insert into bless_info(
+        bless_user,
+        create_time
+        )values (
+        #{openId},
+        now()
         )
     </insert>
-    <insert id="saveShareInfo" parameterType="com.mtm.party.mobile.model.ShareInfo">
-        insert into T_SHARE_INFO(
-        id,
-	    userId,
-	    imgUrl,
-	    createTime,
-	    updateTime
-        )values(
-        #{id},
-        #{userId},
-	    #{imgUrl},
-	    #{createTime},
-	    #{updateTime}
-        )
-    </insert>
-    <insert id="saveUserLogo" parameterType="com.mtm.party.mobile.model.UserLogo">
-        insert into T_USER_LOGO(
-        id,
-        img_url,
-        user_id,
-        create_time,
-        update_time,
-        )values(
-        #{id},
-        #{imgUrl},
-        #{userId},
-        #{createTime},
-        #{updateTime},
-        )
-    </insert>
-    <insert id="saveDetailImages" parameterType="com.mtm.party.mobile.model.DetailImages">
-        insert into T_DETAIL_IMAGES(
-        id,
-        img_url,
-        user_id,
-        banner_id,
-        desc1,
-        create_time,
-        update_time
-        )values(
-        #{id},
-        #{imgUrl},
-        #{userId},
-        #{bannerId},
-        #{desc},
-        #{createTime},
-        #{updateTime}
-        )
-    </insert>
-    <insert id="saveMapInfo" parameterType="com.mtm.party.mobile.model.MapInfo">
-        insert into T_MAP_INFO(
-        id,
-	    userId,
-	    createTime,
-	    updateTime,
-        inviteName,
-        inviteDateOne,
-        inviteDateTwo,
-        inviteAddress,
-        inviteLongitude,
-        inviteLatitude,
-        inviteBgUrl,
-        isOriginal
-        )values(
-        #{id},
-	    #{userId},
-	    #{createTime},
-	    #{updateTime},
-        #{inviteName},
-        #{inviteDateOne},
-        #{inviteDateTwo},
-        #{inviteAddress},
-        #{inviteLongitude},
-        #{inviteLatitude},
-        #{inviteBgUrl},
-        #{isOriginal}
-        )
-    </insert>
-    <update id="updateImageHomeBean" parameterType="com.mtm.party.mobile.model.ImageHomeBean">
-    update T_IMAGE set
-        img_url=#{imgUrl},
-        title=#{title},
-        user_id=#{userId},
-        create_time=#{createTime},
-        update_time=#{updateTime},
-        image_name=#{imageName}
-        where id=#{id}
-    </update>
-
-    <update id="updateMapInfo" parameterType="com.mtm.party.mobile.model.MapInfo">
-    update T_MAP_INFO set
-	    userId = #{userId},
-	    createTime = #{createTime},
-	    updateTime = #{updateTime},
-        inviteName = #{inviteName},
-        inviteDateOne = #{inviteDateOne},
-        inviteDateTwo = #{inviteDateTwo},
-        inviteAddress = #{inviteAddress},
-        inviteLongitude = #{inviteLongitude},
-        inviteLatitude = #{inviteLatitude},
-        inviteBgUrl = #{inviteBgUrl},
-        isOriginal = #{isOriginal}
-        where userId=#{userId}
-    </update>
-    <update id="updateShareInfo" parameterType="com.mtm.party.mobile.model.ShareInfo">
-    update T_MAP_INFO set
-	user_id = #{userId},
-	img_url = #{imgUrl},
-	create_time = #{createTime},
-	update_time = #{updateTime}
-        where id=#{id}
-    </update>
-    <update id="updateDetailImages" parameterType="com.mtm.party.mobile.model.DetailImages">
-    update T_MAP_INFO set
-	update_time = #{updateTime}
-        where id=#{id}
-    </update>
-    <update id="updateUserLogo" parameterType="com.mtm.party.mobile.model.UserLogo">
-    update T_USER_LOGO set
-    img_url = #{imgUrl},
-    user_id = #{userId},
-    create_time = #{createTime},
-    update_time =#{updateTime},
-        where id=#{id}
-    </update>
-
-
 </mapper>
