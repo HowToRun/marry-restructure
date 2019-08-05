@@ -38,4 +38,7 @@ public interface MarryService {
   R doComment(CommentDto commentDto);
 
   R doPraise(String openId);
+
+  R getMapInfo();
+
 }

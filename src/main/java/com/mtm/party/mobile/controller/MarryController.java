@@ -96,4 +96,10 @@ public class MarryController {
     return marryService.doPraise(openId);
   }
 
+  @ApiOperation(value = "获取地图信息", notes = "")
+  @RequestMapping(value = "/getMapInfo",method = RequestMethod.GET)
+  public R getMapInfo(){
+    return marryService.getMapInfo();
+  }
+
 }

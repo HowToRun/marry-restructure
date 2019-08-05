@@ -64,6 +64,19 @@
         where
         bless_user = #{openId}
     </select>
+    <select id="getMapInfo" resultType="java.util.Map">
+        SELECT
+        name_title as nameTitle,
+        solar_calendar as solarCalendar,
+        lunar_calendar as lunarCalendar,
+        address as address,
+        longitude as longitude,
+        latitude as latitude,
+        bg_img_url as bgImgUrl
+        from map_info
+        where
+        del = 0
+    </select>
     <insert id="doComment" parameterType="com.mtm.party.mobile.model.CommentDto">
         insert into comment_info(
         comment_user,

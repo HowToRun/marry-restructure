@@ -194,6 +194,13 @@ public class MarryServiceImpl implements MarryService {
     return new R().ok("点赞成功");
   }
 
+  @Override
+  public R getMapInfo() {
+    Map<String,String> mapInfo = mobileMapper.getMapInfo();
+    logger.info("获取地图信息======>"+mapInfo);
+    return new R().ok(mapInfo);
+  }
+
   private void setUserData(String openId, UserInfo userInfoEntity, UserEntity user) {
     user.setAvatarUrl(userInfoEntity.getAvatarUrl());
     user.setCity(userInfoEntity.getCity());

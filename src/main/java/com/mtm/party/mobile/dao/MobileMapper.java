@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -40,4 +41,7 @@ public interface MobileMapper {
   void doPraise(String openId);
 
   int check(String openId);
+
+  Map<String,String> getMapInfo();
+
 }
