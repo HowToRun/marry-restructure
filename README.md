@@ -2,6 +2,7 @@
 
 ### 项目介绍 
 项目为重构marry-server项目。将开发架构改为了spring boot + mybatis开发模式。
+原作者项目连接：https://github.com/pengMaster/marry
 
 #### 完成度
 该版本为重构第一版，仅对代码结构进行了spring boot架构上的重构。具体逻辑基本保持了原服务的逻辑。
