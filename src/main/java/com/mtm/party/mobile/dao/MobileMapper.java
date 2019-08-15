@@ -44,4 +44,9 @@ public interface MobileMapper {
 
   Map<String,String> getMapInfo();
 
+  void saveHomeImg(HomeImgEntity homeImgEntity);
+
+  void saveImgDetail(ImgDetailEntity imgDetailEntity);
+
+  void updateDesc(ImgDetailEntity imgDetailEntity);
 }

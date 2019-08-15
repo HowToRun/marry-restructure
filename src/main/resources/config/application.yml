@@ -2,58 +2,63 @@
 #spring会从classpath下的/config目录或者classpath的根目录查找application.properties或application.yml。/config优先于classpath根目录
 # Tomcat
 server:
-    tomcat:
-        uri-encoding: UTF-8
-        max-threads: 1000
-        min-spare-threads: 30
-    port: 8099
-    #context-path: /bfd-fast
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8090
+  context-path: /marryService
     #ssl:
-        #key-store: classpath:keystore.p12
-        #key-store-password: 123456
-        #keyStoreType: PKCS12
-        #keyAlias: tomcat
+    #key-store: classpath:keystore.p12
+    #key-store-password: 123456
+    #keyStoreType: PKCS12
+  #keyAlias: tomcat
 
 
 # mybatis 配置
 mybatis:
-    mapperLocations: classpath:mapper/*.xml
+  mapperLocations: classpath:mapper/*.xml
 
 
 spring:
-    profiles:
-        active: dev
-    datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://127.0.0.1:3306/marry?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
-        username: root
-        password: root
-        #连接池的配置信息
-        driver-class-name: com.mysql.cj.jdbc.Driver #mysql 新版本驱动
-        minIdle: 5
-        maxActive: 100
-        initialSize: 10
-        maxWait: 60000
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxPoolPreparedStatementPerConnectionSize: 50
-        removeAbandoned: true
-        filters: stat # ,wall,log4j # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-        useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
-        druidLoginName: root # 登录druid的账号
-        druidPassword: root # 登录druid的密码
+  profiles:
+    active: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/marry?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
+    username: root
+    password: root
+    #连接池的配置信息
+    driver-class-name: com.mysql.cj.jdbc.Driver #mysql 新版本驱动
+    minIdle: 5
+    maxActive: 100
+    initialSize: 10
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 50
+    removeAbandoned: true
+    filters: stat # ,wall,log4j # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
+    druidLoginName: root # 登录druid的账号
+    druidPassword: root # 登录druid的密码
 #跨域参数
 response:
   header:
-   # allowOrigin: ${response.allowOrigin}
+    # allowOrigin: ${response.allowOrigin}
     allowCredentials: true
     allowMethods: POST,PUT, GET, OPTIONS, DELETE
     maxAge: 3600
     allowHeaders: x-requested-with,content-type
     characterEncoding: utf-8
+service:
+  imgUploadPath: D:\img\
+#  上传后，通过Tomcat可访问的网络路径
+  imgNetPath: http://49.232.47.21:8080/images/
+#  imgUploadPath: /usr/local/tools/apache-tomcat-8.5.43/webapps/ROOT/images/

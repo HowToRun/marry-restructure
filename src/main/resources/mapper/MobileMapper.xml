@@ -97,4 +97,43 @@
         now()
         )
     </insert>
+    <insert id="saveHomeImg" parameterType="com.mtm.party.mobile.model.HomeImgEntity">
+        insert into image_info(
+        code,
+        img_url,
+        title,
+        user_open_id,
+        create_time,
+        update_time
+        )values (
+        #{code},
+        #{imgUrl},
+        #{title},
+        #{userOpenId},
+        now(),
+        now()
+        )
+    </insert>
+    <insert id="saveImgDetail" parameterType="com.mtm.party.mobile.model.ImgDetailEntity">
+        insert into image_detail_info(
+        code,
+        img_url,
+        user_open_id,
+        banner_code,
+        create_time,
+        update_time
+        )values (
+        #{code},
+        #{imgUrl},
+        #{userOpenId},
+        #{bannerCode},
+        now(),
+        now()
+        )
+    </insert>
+    <update id="updateDesc" parameterType="com.mtm.party.mobile.model.ImgDetailEntity">
+        update image_detail_info set
+        `desc` = #{desc}
+        where code = #{code}
+    </update>
 </mapper>
