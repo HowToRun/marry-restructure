@@ -201,6 +201,16 @@ public class MarryServiceImpl implements MarryService {
     return new R().ok(mapInfo);
   }
 
+  @Override
+  public R checkAdmin(String openId) {
+    int check = mobileMapper.checkAdmin(openId);
+    if(check != 0 ){
+      return new R().ok(true);
+    }else {
+      return new R().ok(false);
+    }
+  }
+
   private void setUserData(String openId, UserInfo userInfoEntity, UserEntity user) {
     user.setAvatarUrl(userInfoEntity.getAvatarUrl());
     user.setCity(userInfoEntity.getCity());

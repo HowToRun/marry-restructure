@@ -41,4 +41,5 @@ public interface MarryService {
 
   R getMapInfo();
 
+  R checkAdmin(String openId);
 }

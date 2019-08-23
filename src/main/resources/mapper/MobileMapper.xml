@@ -64,6 +64,13 @@
         where
         bless_user = #{openId}
     </select>
+    <select id="checkAdmin" resultType="java.lang.Integer">
+        SELECT
+        count(id)
+        from user_admin_info
+        where
+        open_id = #{openId}
+    </select>
     <select id="getMapInfo" resultType="java.util.Map">
         SELECT
         name_title as nameTitle,

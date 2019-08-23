@@ -49,4 +49,6 @@ public interface MobileMapper {
   void saveImgDetail(ImgDetailEntity imgDetailEntity);
 
   void updateDesc(ImgDetailEntity imgDetailEntity);
+
+  int checkAdmin(String openId);
 }

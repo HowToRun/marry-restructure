@@ -101,5 +101,10 @@ public class MarryController {
   public R getMapInfo(){
     return marryService.getMapInfo();
   }
+  @ApiOperation(value = "验证是否是管理员", notes = "")
+  @RequestMapping(value = "/isAdmin",method = RequestMethod.GET)
+  public R checkAdmin(@RequestParam("openId")String openId){
+    return marryService.checkAdmin(openId);
+  }
 
 }
