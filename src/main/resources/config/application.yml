@@ -25,7 +25,7 @@ spring:
     active: dev
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/marry?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
+    url: jdbc:mysql://49.232.47.21:3306/marry?autoReconnect=true&roundRobinLoadBalance=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Hongkong
     username: root
     password: root
     #连接池的配置信息
